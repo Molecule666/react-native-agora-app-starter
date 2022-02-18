@@ -9,12 +9,21 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 
+import 'react-native-get-random-values';
+import { v4 as uuid } from 'uuid';
+
 export default function Home() {
   const navigation = useNavigation();
   const [joinChannel, setJoinChannel] = useState('');
 
-  const createLive = () => navigation.navigate('Live', { type: 'create' });
-  const joinLive = () => navigation.navigate('Live', { type: 'join' });
+  // const createLive = () => navigation.navigate('Live', { type: 'create' });
+  // const joinLive = () => navigation.navigate('Live', { type: 'join' });
+
+  const createLive = () =>
+    navigation.navigate('Live', { type: 'create', channel: uuid() });
+
+  const joinLive = () =>
+    navigation.navigate('Live', { type: 'join', channel: joinChannel });
 
   return (
     <View style={styles.container}>
